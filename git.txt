@@ -1,0 +1,15 @@
+git add -A
+git commit -m "docs: 리드미 초안"
+git push origin jngbnss
+
+//
+리드미에 할일 추가
+기능별로 구현하기
+모델
+뷰
+컨트롤러
+
+리팩토링하기
+    함수 쪼개기
+피드백 적용하기
+컨벤션 지키기

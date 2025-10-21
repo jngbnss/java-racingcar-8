@@ -57,7 +57,7 @@ Randoms.pickNumberInRange(0, 9);
 git status 
 
 git add -A
-git commit -m "docs: 리드미 초안"
+git commit -m "docs: 계획 작성"
 git push origin jngbnss
 
 ## 🧩 커밋 컨벤션
