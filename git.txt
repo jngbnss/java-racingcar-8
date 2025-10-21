@@ -1,7 +1,8 @@
 git add -A
-git commit -m "feat: View 초안"
+git commit -m "feat: Controller 초안"
 git push origin jngbnss
 
+feat: View 초안
 //
 리드미에 할일 추가
 기능별로 구현하기
