@@ -1,5 +1,5 @@
 git add -A
-git commit -m "feat: Controller 기능 구현 완료 리팩토링 시작"
+git commit -m "docs: 리드미 피드백 내용 추가"
 git push origin jngbnss
 
 feat: View 초안
