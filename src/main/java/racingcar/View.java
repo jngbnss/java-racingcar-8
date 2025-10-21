@@ -7,6 +7,9 @@ import java.util.Map;
 public class View {
     private final Model model;
 //    Model model = new Model();
+    private String winners;
+    private int mx;
+
 
 
     public View(Model model) {
@@ -50,10 +53,23 @@ public class View {
         }
     }
 
+    //모델에서 받아올수있는지 체크해볼께
+    public void getCheck(){
+        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {// 이게 무슨 문법이지
+            String name = entry.getKey();
+            Integer score = entry.getValue();
+            System.out.println(name + " : " + score);
+
+        }
+    }
+
+
     //3.최종 우승자 : 하고 그 다음 이름 배열을 넣어주는 뷰단
     public void callWinner(String winners){
         // 아니면 아예 세팅해서 넘겨버리지 뭐
         // pobi, jun 이렇게
+        getCheck();
+
         System.out.println("최종 우승자 : "+winners);
         //뷰단에도 적절하게 들어가는게 맞는것같은데
     }

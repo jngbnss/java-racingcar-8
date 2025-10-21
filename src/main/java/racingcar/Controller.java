@@ -4,11 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
     private List<String> racersName;
     private Model model;
     private View view;
+    private int mx;
 
     public Controller() {
         this.racersName = new ArrayList<>();
@@ -47,8 +49,41 @@ public class Controller {
 
     }
 
-
+    public void getCheck() {
+        view.getCheck();
+    }
 
     //메서드
+    //최댓값
+    public void checkMax(){
+        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {// 이게 무슨 문법이지
+            String name = entry.getKey();
+            Integer score = entry.getValue();
+            System.out.println(name + " : " + score);
+            mx = Math.max(mx,score);
+            System.out.println(mx);
+        }
+    }
+
+    public void checkWinners(){
+        int maxScore =0;
+        //1 최대 점수 구하기
+        // 1️⃣ 먼저 최대 점수 구하기
+        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {
+            maxScore = Math.max(maxScore, entry.getValue());
+        }
+
+        // 2️⃣ 최대 점수와 같은 이름들 모으기
+        List<String> winners = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {
+            if (entry.getValue() == maxScore) {
+                winners.add(entry.getKey());
+            }
+        }
+
+        // 3️⃣ View로 출력
+        String winnerNames = String.join(", ", winners);
+        view.callWinner(winnerNames);
+    }
 }
 
