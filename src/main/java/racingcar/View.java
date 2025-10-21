@@ -1,7 +1,18 @@
 package racingcar;
 
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Map;
+
 public class View {
+    private final Model model;
+//    Model model = new Model();
+
+
+    public View(Model model) {
+        this.model = model;
+    }
+
     // 1.컨트롤러에서 런을 실행하면 바로 입력값을 받는 로직
     public void settingPrint(){
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
@@ -14,16 +25,31 @@ public class View {
     // 실행 결과는 한줄만 보여주는 건데 그냥 그 밑에서 출력을 해야겠다.
     public void run(int n){
         System.out.println("실행 결과");
-        while(n>0){
-            System.out.println("이름 : "); //짝대기
-            // 여기서도 매개변수로 받아야하나
-            // 반복하는 로직을 만들어봐야하는데
-            // 좀 커질것같다
-            // 쪼개는거 염두하기
+        while(n>0) {
+            for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {// 이게 무슨 문법이지
+                String name = entry.getKey();
+                Integer score = entry.getValue();
+
+                int move = Randoms.pickNumberInRange(0,9);
+                if(move>=4){
+                    score+=1;
+                    model.getRacers().put(name,score);
+                }
+
+                System.out.print(name + " : ");
+
+                for (int i = 0; i < score; i++) {
+                    System.out.print("-");
+                }
+
+                System.out.println();
+
+            }
+            System.out.println();
             n--;
         }
-        System.out.println();
     }
+
     //3.최종 우승자 : 하고 그 다음 이름 배열을 넣어주는 뷰단
     public void callWinner(String winners){
         // 아니면 아예 세팅해서 넘겨버리지 뭐

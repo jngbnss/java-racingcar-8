@@ -16,6 +16,8 @@ public class Model {
 //    그럼 컨트롤러에서 생성자로 넘겨 받아야겠다.
 
 
+
+
     // 생성자에서 받고 이름이랑 점수를 설정하자
     public Model(List<String> racersName) {
         //this.racersName = racersName;
@@ -31,8 +33,8 @@ public class Model {
     // 근데 위너 선정할때 제일 값이 큰사람이 필요할것같은데
     //벨류 멕시멈일때 키값을 가져오게
 
-//    public Map<String, Integer> getRacers() {
-//        return racers;
-//    }
+    public Map<String, Integer> getRacers() {
+        return racers;
+    }
     // 의존성 주입하면 그냥 뽑아올수있을듯
 }

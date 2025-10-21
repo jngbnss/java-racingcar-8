@@ -1,5 +1,5 @@
 git add -A
-git commit -m "feat: Controller 초안"
+git commit -m "feat: Controller 게임 진행 구현"
 git push origin jngbnss
 
 feat: View 초안

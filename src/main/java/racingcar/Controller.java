@@ -1,16 +1,23 @@
 package racingcar;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Controller {
-    View view = new View();
-    Model model ;
+    private List<String> racersName;
+    private Model model;
+    private View view;
+
+    public Controller() {
+        this.racersName = new ArrayList<>();
+        this.model = new Model(racersName);
+        this.view = new View(model);
+    }
     //멤버변수
     // 일단 입력값 받아서 구분해 놓는거를 주려고하니까
-    private List<String> racersNmae = new ArrayList<>();
+//    private List<String> racersName = new ArrayList<>();
     //생성자 // 뷰를 시작하면 좋겠어
 
     // 기본 생성자 없어도 되는거아냐?
@@ -27,10 +34,17 @@ public class Controller {
     // 아니면 메서드에서 받는게 좋을까
     public void initRacers(){
         view.settingPrint();
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        this.racersNmae= Arrays.asList(input.split(","));
-        model = new Model(racersNmae);
+        String input = Console.readLine();
+        this.racersName = Arrays.asList(input.split(","));
+
+        model = new Model(racersName);
+        this.view = new View(model);
+
+        view.settingTry();
+//        String cnt = Console.readLine();
+        int cnt = Integer.parseInt(Console.readLine());
+        view.run(cnt);
+
     }
 
 
