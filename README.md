@@ -55,9 +55,11 @@ Randoms 및 Console
 Randoms.pickNumberInRange(0, 9);
 
 git status 
+
 git add -A
 git commit -m "docs: 리드미 초안"
 git push origin jngbnss
+
 ## 🧩 커밋 컨벤션
 
 > AngularJS Commit Message Conventions을 따른다.
