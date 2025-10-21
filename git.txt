@@ -1,5 +1,5 @@
 git add -A
-git commit -m "docs: 리드미 피드백 내용 추가"
+git commit -m "feat: 뷰단에 있는 기능 컨트롤러 옮김"
 git push origin jngbnss
 
 feat: View 초안

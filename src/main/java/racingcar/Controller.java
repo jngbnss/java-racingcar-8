@@ -1,6 +1,7 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,57 +16,55 @@ public class Controller {
     public Controller() {
         this.racersName = new ArrayList<>();
         this.model = new Model(racersName);
-        this.view = new View(model);
+        this.view = new View();
     }
-    //멤버변수
-    // 일단 입력값 받아서 구분해 놓는거를 주려고하니까
-//    private List<String> racersName = new ArrayList<>();
-    //생성자 // 뷰를 시작하면 좋겠어
 
-    // 기본 생성자 없어도 되는거아냐?
-//    public Controller(List<String> racersNmae) {
-//        view.settingPrint();
-//        // 여기서 입력값 받는 메서드를 넣는게 좋은가?
-//        // 생성자에 메서드까지면 일이 너무 많아진다.
-//        // 여기서 뷰단에서 입력받는거 넣으면 좋을것같은데
-//
-//        this.racersNmae = racersNmae;
-//    }
-    // 입력값받는걸 생성자에서 하는게 좋을까
-    // 생성자가 편하지 않을까?
-    // 아니면 메서드에서 받는게 좋을까
     public void initRacers(){
         view.settingPrint();
         String input = Console.readLine();
         this.racersName = Arrays.asList(input.split(","));
 
         model = new Model(racersName);
-        this.view = new View(model);
+        this.view = new View();
 
         view.settingTry();
-//        String cnt = Console.readLine();
         int cnt = Integer.parseInt(Console.readLine());
-        view.run(cnt);
+
+        playRace(cnt);
+        printResult();
+        printWinners();
 
     }
 
-    public void getCheck() {
-        view.getCheck();
-    }
 
-    //메서드
-    //최댓값
-    public void checkMax(){
-        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {// 이게 무슨 문법이지
-            String name = entry.getKey();
-            Integer score = entry.getValue();
-            System.out.println(name + " : " + score);
-            mx = Math.max(mx,score);
-            System.out.println(mx);
+
+    public void playRace(int n) {
+        for (int turn = 0; turn < n; turn++) {
+            for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {
+                String name = entry.getKey();
+                int score = entry.getValue();
+
+                int move = Randoms.pickNumberInRange(0, 9);
+                System.out.println("move = " + move);
+                if (move >= 4) {
+
+                    score += 1;
+                    model.getRacers().put(name, score);
+                }
+            }
+            // 한 턴이 끝나면 View에 상태 전달
+            view.showRacers(model.getRacers());
+            System.out.println();
         }
     }
 
-    public void checkWinners(){
+    private void printResult() {
+        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {
+            System.out.print(entry.getKey()+" : "+entry.getValue()+" ");
+        }
+    }
+
+    public void printWinners(){
         int maxScore =0;
         //1 최대 점수 구하기
         // 1️⃣ 먼저 최대 점수 구하기
