@@ -1,5 +1,5 @@
 git add -A
-git commit -m "docs: 기능을 구현하기 전 README.md에 구현할 기능 목록 정리"
+git commit -m "feat: Model 초안"
 git push origin jngbnss
 
 //
