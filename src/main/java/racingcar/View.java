@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.List;
 import java.util.Map;
 
 public class View {
@@ -25,7 +26,8 @@ public class View {
     }
 
 
-    public void printWinners(String winners) {
-        System.out.println("최종 우승자 : " + winners);
+    // View.java: 출력만
+    public void printWinners(List<String> winners) {
+        System.out.println("최종 우승자 : " + String.join(", ", winners));
     }
 }
