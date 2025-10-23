@@ -19,15 +19,15 @@ public class Controller {
         this.view = new View();
     }
 
-    public void initRacers(){
-        view.settingPrint();
+    public void initRacers() {
+        view.inputCarNames();
         String input = Console.readLine();
         this.racersName = Arrays.asList(input.split(","));
 
         model = new Model(racersName);
         this.view = new View();
 
-        view.settingTry();
+        view.attemptCount();
         int cnt = Integer.parseInt(Console.readLine());
 
         playRace(cnt);
@@ -35,7 +35,6 @@ public class Controller {
         printWinners();
 
     }
-
 
 
     public void playRace(int n) {
@@ -53,19 +52,19 @@ public class Controller {
                 }
             }
             // 한 턴이 끝나면 View에 상태 전달
-            view.showRacers(model.getCars());
+            view.printRoundResult(model.getCars());
             System.out.println();
         }
     }
 
     private void printResult() {
         for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
-            System.out.print(entry.getKey()+" : "+entry.getValue()+" ");
+            System.out.print(entry.getKey() + " : " + entry.getValue() + " ");
         }
     }
 
-    public void printWinners(){
-        int maxScore =0;
+    public void printWinners() {
+        int maxScore = 0;
         //1 최대 점수 구하기
         // 1️⃣ 먼저 최대 점수 구하기
         for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
@@ -82,7 +81,7 @@ public class Controller {
 
         // 3️⃣ View로 출력
         String winnerNames = String.join(", ", winners);
-        view.callWinner(winnerNames);
+        view.printWinners(winnerNames);
     }
 }
 

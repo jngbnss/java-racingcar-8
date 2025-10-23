@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Model {
-    private final Map<String,Integer> cars;
+    private final Map<String, Integer> cars;
 
     public Model(List<String> carNames) {
         cars = new LinkedHashMap<>();
-        for(String name:carNames){
-            cars.put(name,0);
+        for (String name : carNames) {
+            cars.put(name, 0);
         }
     }
+
     public Map<String, Integer> getCars() {
         // return racers;
         return Collections.unmodifiableMap(cars);

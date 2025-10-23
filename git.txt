@@ -1,7 +1,7 @@
 git pull origin main
 
 git add -A
-git commit -m "refactor:모델 final, 필드명 car로 변경"
+git commit -m "refactor:view 메서드명 변경"
 git push origin jngbnss
 
 feat: View 초안
