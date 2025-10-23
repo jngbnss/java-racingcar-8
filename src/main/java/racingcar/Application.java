@@ -5,7 +5,6 @@ public class Application {
         // TODO: 프로그램 구현
         Controller controller = new Controller();
 
-//        controller.initRacers();
         controller.initCarNames();
         controller.inputAttemptCount();
         controller.startRace();

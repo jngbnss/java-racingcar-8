@@ -1,7 +1,6 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +18,7 @@ public class Controller {
         this.view = new View();
     }
 
-    public void initCarNames(){
+    public void initCarNames() {
         view.inputCarNames();
         String input = Console.readLine();
         this.carNames = Arrays.asList(input.split(","));
@@ -27,13 +26,13 @@ public class Controller {
 
     }
 
-    public void  inputAttemptCount(){
+    public void inputAttemptCount() {
         view.attemptCount();
-        attemptCount= Integer.parseInt(Console.readLine());
+        attemptCount = Integer.parseInt(Console.readLine());
     }
 
 
-    public void startRace(){
+    public void startRace() {
         playRace(attemptCount);
         printResult();
         printWinners();
@@ -42,21 +41,8 @@ public class Controller {
 
     public void playRace(int n) {
         for (int turn = 0; turn < n; turn++) {
-            for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
-                String name = entry.getKey();
-                int score = entry.getValue();
-
-                int move = Randoms.pickNumberInRange(0, 9);
-                System.out.println("move = " + move);
-                if (move >= 4) {
-
-                    score += 1;
-                    model.getCars().put(name, score);
-                }
-            }
-            // 한 턴이 끝나면 View에 상태 전달
+            model.playTurn();
             view.printRoundResult(model.getCars());
-            System.out.println();
         }
     }
 
@@ -67,6 +53,10 @@ public class Controller {
     }
 
     public void printWinners() {
+        view.printWinners(model.winners());
+    }
+
+    public void printWinners1() {
         int maxScore = 0;
         //1 최대 점수 구하기
         // 1️⃣ 먼저 최대 점수 구하기

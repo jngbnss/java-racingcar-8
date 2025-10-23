@@ -1,7 +1,7 @@
 git pull origin main
 
 git add -A
-git commit -m "refactor:controller init 메서드 분리"
+git commit -m "refactor:Controller 메서드 SRP 준수하도록 분리"
 git push origin jngbnss
 
 feat: View 초안
