@@ -8,32 +8,35 @@ import java.util.List;
 import java.util.Map;
 
 public class Controller {
-    private List<String> racersName;
+    private List<String> carNames;
     private Model model;
     private View view;
-    //private int mx;
+    private int attemptCount;
 
     public Controller() {
-        this.racersName = new ArrayList<>();
-        this.model = new Model(racersName);
+        this.carNames = new ArrayList<>();
+        this.model = new Model(carNames);
         this.view = new View();
     }
 
-    public void initRacers() {
+    public void initCarNames(){
         view.inputCarNames();
         String input = Console.readLine();
-        this.racersName = Arrays.asList(input.split(","));
+        this.carNames = Arrays.asList(input.split(","));
+        model = new Model(carNames);
 
-        model = new Model(racersName);
-        this.view = new View();
+    }
 
+    public void  inputAttemptCount(){
         view.attemptCount();
-        int cnt = Integer.parseInt(Console.readLine());
+        attemptCount= Integer.parseInt(Console.readLine());
+    }
 
-        playRace(cnt);
+
+    public void startRace(){
+        playRace(attemptCount);
         printResult();
         printWinners();
-
     }
 
 
