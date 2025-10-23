@@ -11,7 +11,7 @@ public class Controller {
     private List<String> racersName;
     private Model model;
     private View view;
-    private int mx;
+    //private int mx;
 
     public Controller() {
         this.racersName = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Controller {
 
     public void playRace(int n) {
         for (int turn = 0; turn < n; turn++) {
-            for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {
+            for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
                 String name = entry.getKey();
                 int score = entry.getValue();
 
@@ -49,17 +49,17 @@ public class Controller {
                 if (move >= 4) {
 
                     score += 1;
-                    model.getRacers().put(name, score);
+                    model.getCars().put(name, score);
                 }
             }
             // 한 턴이 끝나면 View에 상태 전달
-            view.showRacers(model.getRacers());
+            view.showRacers(model.getCars());
             System.out.println();
         }
     }
 
     private void printResult() {
-        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {
+        for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
             System.out.print(entry.getKey()+" : "+entry.getValue()+" ");
         }
     }
@@ -68,13 +68,13 @@ public class Controller {
         int maxScore =0;
         //1 최대 점수 구하기
         // 1️⃣ 먼저 최대 점수 구하기
-        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {
+        for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
             maxScore = Math.max(maxScore, entry.getValue());
         }
 
         // 2️⃣ 최대 점수와 같은 이름들 모으기
         List<String> winners = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : model.getRacers().entrySet()) {
+        for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
             if (entry.getValue() == maxScore) {
                 winners.add(entry.getKey());
             }
