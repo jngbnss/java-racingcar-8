@@ -1,7 +1,7 @@
 git pull origin main
 
 git add -A
-git commit -m "refactor: controller, validation 통합"
+git commit -m "refactor: controller srp위해서 InputHandler 추가"
 git push origin jngbnss
 
 11:31 10-23 어느정도 srp 완료

@@ -7,11 +7,14 @@ import java.util.List;
 public class Controller {
     private Model model;
     private final View view;
+    private final InputHandler inputHandler;
     private int attemptCount;
     private static final String INVALID_ATTEMPT_MSG = "시도 횟수는 1 이상이어야 합니다.";
 
+
     public Controller() {
         this.view = new View();
+        this.inputHandler = new InputHandler();
     }
 
     public void run() {
@@ -20,22 +23,19 @@ public class Controller {
         startRace();
     }
 
-
     public void initCarNames() {
-        view.showCarNameInputPrompt();//여기확인
-        String input = Console.readLine();
-        List<String> carNames = Arrays.asList(input.split(","));
+        view.showCarNameInputPrompt();
+        List<String> carNames = inputHandler.readCarNames();
         model = new Model(carNames);
-
     }
 
     public void inputAttemptCount() {
         view.showAttemptCount();
-        String input = Console.readLine();
-        int attempt = parserAttemptCount(input); // 문자열->int 변환
-        validateAttemptCount(attempt); //0 이하면 예외 발생
-        this.attemptCount = attempt;
+        this.attemptCount = inputHandler.readAttemptCount();
     }
+
+
+    // 검증 로직이 단일하여 현재는 Controller에 포함. 추후 검증 항목이 늘어나면 Validator로 분리 예정.
     private void validateAttemptCount(int attmept) {
         if (attmept < 1) {
             throw new IllegalArgumentException(INVALID_ATTEMPT_MSG);

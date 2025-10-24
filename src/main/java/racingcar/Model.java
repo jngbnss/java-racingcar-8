@@ -9,7 +9,10 @@ import java.util.Map;
 
 public class Model {
     private final Map<String, Integer> cars;
-    private static final String INVALID_NAME_MSG = "자동차 이름은 1~5자여야 합니다.";
+    private static final String NULL_NAME_MSG = "자동차 이름은 null일 수 없습니다.";
+    private static final String BLANK_NAME_MSG = "자동차 이름은 공백일 수 없습니다.";
+    private static final String MAX_LENGTH_MSG = "자동차 이름은 최대 5자여야 합니다.";
+
     private static final int MIN_NUMBER_TO_MOVE = 4;
 
     public Model(List<String> carNames) {
@@ -23,8 +26,14 @@ public class Model {
 
 
     private void validateName(String name) {
-        if (name == null || name.isBlank() || name.length() > 5) {
-            throw new IllegalArgumentException(INVALID_NAME_MSG);
+        if (name == null) {
+            throw new IllegalArgumentException(NULL_NAME_MSG);
+        }
+        if (name.isBlank()) {
+            throw new IllegalArgumentException(BLANK_NAME_MSG);
+        }
+        if (name.length() > 5) {
+            throw new IllegalArgumentException(MAX_LENGTH_MSG);
         }
     }
 
