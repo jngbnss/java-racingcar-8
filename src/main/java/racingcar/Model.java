@@ -13,7 +13,15 @@ public class Model {
     public Model(List<String> carNames) {
         cars = new LinkedHashMap<>();
         for (String name : carNames) {
+            if(name.length()>5){
+                throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
+            }
             cars.put(name, 0);
+        }
+    }
+    private void validateName(String name){
+        if(name==null||name.isBlank()||name.length()>5){
+            throw new IllegalArgumentException("자동차 이름은 1~5자여야 합니다.");
         }
     }
 
@@ -28,7 +36,7 @@ public class Model {
         for (String name : cars.keySet()) {
             int move = Randoms.pickNumberInRange(0, 9);
 //            System.out.println("move = " + move); //주사위값 확인용
-            if (move > 4) {
+            if (move >= 4) {
                 moveCar(name);
             }
         }
