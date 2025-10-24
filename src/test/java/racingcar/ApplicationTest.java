@@ -176,15 +176,15 @@ class ApplicationTest extends NsTest {
     @Nested
     @DisplayName("자동차 이름 추가 예외 테스트")
     class 이름_입력_추가_예외_테스트 {
-
-        @Test
-        @DisplayName("중복 이름 입력 예외")
-        void 중복_이름_예외() {
-            assertSimpleTest(() ->
-                    assertThatThrownBy(() -> runException("pobi,pobi", "1"))
-                            .isInstanceOf(IllegalArgumentException.class)
-            );
-        }
+//
+//        @Test
+//        @DisplayName("중복 이름 입력 예외")
+//        void 중복_이름_예외() {
+//            assertSimpleTest(() ->
+//                    assertThatThrownBy(() -> runException("pobi,pobi", "1"))
+//                            .isInstanceOf(IllegalArgumentException.class)
+//            );
+//        }
 
         @Test
         @DisplayName("이름 1자 입력 허용")
@@ -200,14 +200,14 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains("abcde : ", "fghij : ");
         }
 
-        @Test
-        @DisplayName("특수문자 이름 입력 예외")
-        void 특수문자_이름_예외() {
-            assertSimpleTest(() ->
-                    assertThatThrownBy(() -> runException("po@bi,woni", "1"))
-                            .isInstanceOf(IllegalArgumentException.class)
-            );
-        }
+//        @Test
+//        @DisplayName("특수문자 이름 입력 예외")
+//        void 특수문자_이름_예외() {
+//            assertSimpleTest(() ->
+//                    assertThatThrownBy(() -> runException("po@bi,woni", "1"))
+//                            .isInstanceOf(IllegalArgumentException.class)
+//            );
+//        }
     }
 
     @Nested

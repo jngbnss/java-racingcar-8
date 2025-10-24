@@ -28,11 +28,6 @@ public class Model {
         }
     }
 
-    public Map<String, Integer> getCars() {
-        return cars;
-
-    }
-
 
     public void playTurn() {
         cars.keySet().forEach(name -> {
@@ -57,4 +52,7 @@ public class Model {
         return winners;
     }
 
+    public Map<String, Integer> getCurrentState() {
+        return Collections.unmodifiableMap(cars);
+    }
 }
