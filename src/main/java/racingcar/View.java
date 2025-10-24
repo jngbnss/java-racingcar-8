@@ -11,6 +11,7 @@ public class View {
     public void attemptCount() {
         System.out.println("시도할 횟수는 몇 회인가요?");
     }
+
     public void printRaceStartMessage() {
         System.out.println("\n실행 결과");
     }

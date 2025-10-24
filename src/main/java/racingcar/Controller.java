@@ -17,7 +17,8 @@ public class Controller {
         this.model = new Model(carNames);
         this.view = new View();
     }
-    public void run(){
+
+    public void run() {
         initCarNames();
         inputAttemptCount();
         startRace();
@@ -37,16 +38,16 @@ public class Controller {
     public void inputAttemptCount() {
         view.attemptCount();
         String input = Console.readLine();
-        
+
         int attempt = parserAttemptCount(input); // 문자열->int 변환
         Validator.validateAttemptCount(attempt); //0 이하면 예외 발생
         this.attemptCount = attempt;
     }
 
     private int parserAttemptCount(String input) {
-        try{
+        try {
             return Integer.parseInt(input);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("시도 횟수는 숫자로 입력해야 합니다.");
         }
     }

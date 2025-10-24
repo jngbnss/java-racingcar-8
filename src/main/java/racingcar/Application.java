@@ -6,8 +6,5 @@ public class Application {
         Controller controller = new Controller();
         controller.run();
 
-//        controller.initCarNames();
-//        controller.inputAttemptCount();
-//        controller.startRace();
     }
 }

@@ -9,17 +9,22 @@ import java.util.Map;
 
 public class Model {
     private final Map<String, Integer> cars;
+    private static final String INVALID_NAME_MSG = "자동차 이름은 1~5자여야 합니다.";
+    private static final int MIN_NUMBER_TO_MOVE = 4;
 
     public Model(List<String> carNames) {
         cars = new LinkedHashMap<>();
         for (String name : carNames) {
             validateName(name);
+
             cars.put(name, 0);
         }
     }
-    private void validateName(String name){
-        if(name==null||name.isBlank()||name.length()>5){
-            throw new IllegalArgumentException("자동차 이름은 1~5자여야 합니다.");
+
+
+    private void validateName(String name) {
+        if (name == null || name.isBlank() || name.length() > 5) {
+            throw new IllegalArgumentException(INVALID_NAME_MSG);
         }
     }
 
@@ -30,14 +35,11 @@ public class Model {
 
 
     public void playTurn() {
-
-        for (String name : cars.keySet()) {
-            int move = Randoms.pickNumberInRange(0, 9);
-//            System.out.println("move = " + move); //주사위값 확인용
-            if (move >= 4) {
+        cars.keySet().forEach(name -> {
+            if (Randoms.pickNumberInRange(0, 9) >= MIN_NUMBER_TO_MOVE) {
                 moveCar(name);
             }
-        }
+        });
     }
 
     public void moveCar(String name) {
