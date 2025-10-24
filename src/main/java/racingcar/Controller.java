@@ -1,7 +1,6 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class Controller {
 
 
     public void initCarNames() {
-        view.inputCarNames();//여기확인
+        view.showCarNameInputPrompt();//여기확인
         String input = Console.readLine();
         List<String> carNames = Arrays.asList(input.split(","));
         model = new Model(carNames);
@@ -30,7 +29,7 @@ public class Controller {
     }
 
     public void inputAttemptCount() {
-        view.attemptCount();
+        view.showAttemptCount();
         String input = Console.readLine();
         int attempt = parserAttemptCount(input); // 문자열->int 변환
         Validator.validateAttemptCount(attempt); //0 이하면 예외 발생
@@ -47,7 +46,7 @@ public class Controller {
 
 
     public void startRace() {
-        view.printRaceStartMessage();
+        view.showRaceStart();
 
         for (int turn = 0; turn < attemptCount; turn++) {
             model.playTurn(); //Model이 자체적으로 상태 관리
@@ -58,7 +57,7 @@ public class Controller {
 
     public void showWinners() {
         List<String> winners = model.getWinnersList();
-        view.printWinners(winners);
+        view.showWinners(winners);
     }
 
 }
