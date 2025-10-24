@@ -39,7 +39,7 @@ public class Controller {
         String input = Console.readLine();
         
         int attempt = parserAttemptCount(input); // 문자열->int 변환
-        Validator.validateAttemptCount(attemptCount); //0 이하면 예외 발생
+        Validator.validateAttemptCount(attempt); //0 이하면 예외 발생
         this.attemptCount = attempt;
     }
 
