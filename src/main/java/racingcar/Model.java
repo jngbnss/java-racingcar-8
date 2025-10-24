@@ -24,9 +24,10 @@ public class Model {
 
 
     public void playTurn() {
+
         for (String name : cars.keySet()) {
             int move = Randoms.pickNumberInRange(0, 9);
-//            System.out.println("move = " + move);
+//            System.out.println("move = " + move); //주사위값 확인용
             if (move > 4) {
                 moveCar(name);
             }

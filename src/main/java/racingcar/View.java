@@ -11,6 +11,9 @@ public class View {
     public void attemptCount() {
         System.out.println("시도할 횟수는 몇 회인가요?");
     }
+    public void printRaceStartMessage() {
+        System.out.println("\n실행 결과");
+    }
 
 
     public void printRoundResult(Map<String, Integer> cars) {
@@ -28,6 +31,16 @@ public class View {
 
     // View.java: 출력만
     public void printWinners(List<String> winners) {
+
         System.out.println("최종 우승자 : " + String.join(", ", winners));
     }
+
+//    public void printFinalResult(Map<String, Integer> cars) {
+//        System.out.println("최종 우승자");
+//        for (Map.Entry<String, Integer> entry : cars.entrySet()) {
+//            System.out.print(entry.getKey() + " : " + entry.getValue() + " ");
+//
+//        }
+//        System.out.println();
+//    }
 }
