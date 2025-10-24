@@ -4,9 +4,10 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Controller controller = new Controller();
+        controller.run();
 
-        controller.initCarNames();
-        controller.inputAttemptCount();
-        controller.startRace();
+//        controller.initCarNames();
+//        controller.inputAttemptCount();
+//        controller.startRace();
     }
 }

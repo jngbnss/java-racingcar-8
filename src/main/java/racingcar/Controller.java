@@ -9,13 +9,18 @@ import java.util.Map;
 public class Controller {
     private List<String> carNames;
     private Model model;
-    private View view;
+    private final View view;
     private int attemptCount;
 
     public Controller() {
         this.carNames = new ArrayList<>();
         this.model = new Model(carNames);
         this.view = new View();
+    }
+    public void run(){
+        initCarNames();
+        inputAttemptCount();
+        startRace();
     }
 
     //1
@@ -36,9 +41,11 @@ public class Controller {
 
     //3
     public void startRace() {
+        view.printRaceStartMessage();
         playRace(attemptCount);
         //5
-        printResult();
+        //printResult(); // 잘나오는데? 뭔가 꼬이는데?
+
         //6
         showWinners();
     }
@@ -48,17 +55,23 @@ public class Controller {
     public void playRace(int n) {
         for (int turn = 0; turn < n; turn++) {
             model.playTurn();
-            view.printRoundResult(model.getCars());
+            view.printRoundResult(model.getCars()); //여기서만 사용하나?
+            // 매개변수를 던지는 명령이 들어오면 모델에서 다뤄야하나?
         }
     }
 
     //5 뷰로 넘겨
-    private void printResult() {
-        for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
-            System.out.print(entry.getKey() + " : " + entry.getValue() + " ");
-        }
-        System.out.println();
-    }
+//    private void printResult1() {
+//
+//        for (Map.Entry<String, Integer> entry : model.getCars().entrySet()) {
+//            System.out.print(entry.getKey() + " : " + entry.getValue() + " ");
+//
+//        }
+//        System.out.println();
+//    }
+//    private void printResult(){
+//        view.printFinalResult(model.getCars());
+//    }
 
     //6
     public void showWinners() {

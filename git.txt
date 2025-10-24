@@ -1,8 +1,10 @@
 git pull origin main
 
 git add -A
-git commit -m "refactor:Model 메서드 SRP 준수하도록 분리"
+git commit -m "refactor:Controller View 책임 분리"
 git push origin jngbnss
+
+git pull
 
 feat: View 초안
 //
