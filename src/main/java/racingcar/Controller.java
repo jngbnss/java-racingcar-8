@@ -8,6 +8,7 @@ public class Controller {
     private Model model;
     private final View view;
     private int attemptCount;
+    private static final String INVALID_ATTEMPT_MSG = "시도 횟수는 1 이상이어야 합니다.";
 
     public Controller() {
         this.view = new View();
@@ -32,8 +33,13 @@ public class Controller {
         view.showAttemptCount();
         String input = Console.readLine();
         int attempt = parserAttemptCount(input); // 문자열->int 변환
-        Validator.validateAttemptCount(attempt); //0 이하면 예외 발생
+        validateAttemptCount(attempt); //0 이하면 예외 발생
         this.attemptCount = attempt;
+    }
+    private void validateAttemptCount(int attmept) {
+        if (attmept < 1) {
+            throw new IllegalArgumentException(INVALID_ATTEMPT_MSG);
+        }
     }
 
     private int parserAttemptCount(String input) {
