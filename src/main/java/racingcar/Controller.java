@@ -9,7 +9,7 @@ import java.util.Map;
 public class Controller {
     private List<String> carNames;
     private Model model;
-    private View view;
+    private final View view;
     private int attemptCount;
 
     public Controller() {
@@ -17,6 +17,7 @@ public class Controller {
         this.model = new Model(carNames);
         this.view = new View();
     }
+
 
     //1
     public void initCarNames() {

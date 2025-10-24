@@ -1,8 +1,14 @@
 git pull origin main
 
 git add -A
-git commit -m "refactor:Model 메서드 SRP 준수하도록 분리"
+git commit -m "refactor:"
 git push origin jngbnss
+
+11:31 10-23 어느정도 srp 완료
+명명 재설정하기
+테스트 코드 만들기
+예외처리하기
+
 
 feat: View 초안
 //
@@ -21,12 +27,12 @@ feat: View 초안
 
 > AngularJS Commit Message Conventions을 따른다.
 
-| 타입           | 설명                 |
-|--------------|--------------------|
-| **feat**     | 새로운 기능 추가          |
-| **fix**      | 버그 수정              |
-| **refactor** | 코드 리팩터링            |
-| **style**    | 포맷, 세미콜론 등 비기능적 변경 |
-| **test**     | 테스트 코드 추가          |
-| **docs**     | 문서 수정              |
-| **chore**    | 설정, 빌드 관련 변경       |
+| 타입           | 설명                           |
+|--------------|------------------------|
+| **feat**     | 새로운 기능 추가            |
+| **fix**      | 버그 수정                       |
+| **refactor** | 코드 리팩터링                  |
+| **style**    | 포맷, 세미콜론 등 비기능적 변경     |
+| **test**     | 테스트 코드 추가                  |
+| **docs**     | 문서 수정                           |
+| **chore**    | 설정, 빌드 관련 변경                |
