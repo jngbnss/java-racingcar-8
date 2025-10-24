@@ -13,9 +13,7 @@ public class Model {
     public Model(List<String> carNames) {
         cars = new LinkedHashMap<>();
         for (String name : carNames) {
-            if(name.length()>5){
-                throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
-            }
+            validateName(name);
             cars.put(name, 0);
         }
     }

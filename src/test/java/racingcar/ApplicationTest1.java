@@ -10,36 +10,77 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class ApplicationTest extends NsTest {
+class ApplicationTest1 extends NsTest {
     private static final int MOVING_FORWARD = 4;
     private static final int STOP = 3;
 
+    // --------------------------
+    // 게임 로직 테스트
+    // --------------------------
     @Test
-    void 기능_테스트() {
+    @DisplayName("전진 조건 테스트")
+    void 전진_조건() {
         assertRandomNumberInRangeTest(
                 () -> {
                     run("pobi,woni", "1");
-                    assertThat(output()).contains("pobi : -", "woni : ", "최종 우승자 : pobi");
+                    assertThat(output()).contains("pobi : -", "woni : ");
                 },
                 MOVING_FORWARD, STOP
         );
     }
 
     @Test
-    void 예외_테스트() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("pobi,javaji", "1"))
-                        .isInstanceOf(IllegalArgumentException.class)
+    @DisplayName("단독 우승자 계산")
+    void 단독_우승자() {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    run("pobi,woni", "1");
+                    assertThat(output()).contains("최종 우승자 : pobi");
+                },
+                MOVING_FORWARD, STOP
         );
     }
 
-    @Override
-    public void runMain() {
-        Application.main(new String[]{});
+    @Test
+    @DisplayName("공동 우승자 계산")
+    void 공동_우승자() {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    run("pobi,woni", "1");
+                    assertThat(output()).contains("최종 우승자 : pobi, woni");
+                },
+                MOVING_FORWARD, MOVING_FORWARD
+        );
     }
 
-    //입력 검증 관련(예외 중심)
-    //1. 자동차 이름관련
+    @Test
+    @DisplayName("모든 자동차 이동하지 않은 경우")
+    void 모든자동차_정지() {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    run("pobi,woni", "1");
+                    assertThat(output()).contains("pobi : ", "woni : ", "최종 우승자 : pobi, woni");
+                },
+                STOP, STOP
+        );
+    }
+
+    @Test
+    @DisplayName("여러 회 경주 시 상태 변화 확인")
+    void 여러회_경주() {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    run("pobi,woni", "3");
+                    // 각 차 위치 누적 표시 확인
+                    assertThat(output()).contains("pobi : ---", "woni : --");
+                },
+                MOVING_FORWARD, STOP, MOVING_FORWARD, STOP, MOVING_FORWARD, MOVING_FORWARD
+        );
+    }
+
+    // --------------------------
+    // 예외 테스트
+    // --------------------------
     @Nested
     @DisplayName("자동차 이름관련 예외 테스트")
     class 이름_입력_예외_테스트{
@@ -58,7 +99,6 @@ class ApplicationTest extends NsTest {
                             .isInstanceOf(IllegalArgumentException.class));
         }
 
-
         @Test
         void 자동차_이름_공백_예외() {
             assertSimpleTest(() ->
@@ -75,8 +115,6 @@ class ApplicationTest extends NsTest {
         }
     }
 
-
-    // 시도 횟수 관련 예외 테스트
     @Nested
     @DisplayName("시도 횟수 관련 예외 테스트")
     class 시도_횟수_입력_예외_테스트{
@@ -90,28 +128,28 @@ class ApplicationTest extends NsTest {
 
         @Test
         void 시도횟수_음수_입력_예외(){
-            assertSimpleTest(()->
-                    assertThatThrownBy(()->runException("pobi,woni","-3"))
+            assertSimpleTest(() ->
+                    assertThatThrownBy(() -> runException("pobi,woni","-3"))
                             .isInstanceOf(IllegalArgumentException.class)
             );
         }
 
         @Test
         void 시도횟수_숫자아닌문자열_입력_예외(){
-            assertSimpleTest(()->
-                    assertThatThrownBy(()->runException("pobi,woni","abc"))
+            assertSimpleTest(() ->
+                    assertThatThrownBy(() -> runException("pobi,woni","abc"))
                             .isInstanceOf(IllegalArgumentException.class)
             );
         }
-
     }
 
-    // 게임 로직 테스트
-    @Nested
-    @DisplayName("게임 로직 테스트")
-    class 게임_로직_테스트{
-        @Test
-        @DisplayName("전진_조건_테스트")
+    // --------------------------
+    // 메인 실행
+    // --------------------------
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
     }
-
 }
+
+

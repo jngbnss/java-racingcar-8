@@ -36,7 +36,19 @@ public class Controller {
     //2
     public void inputAttemptCount() {
         view.attemptCount();
-        attemptCount = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        
+        int attempt = parserAttemptCount(input); // 문자열->int 변환
+        Validator.validateAttemptCount(attemptCount); //0 이하면 예외 발생
+        this.attemptCount = attempt;
+    }
+
+    private int parserAttemptCount(String input) {
+        try{
+            return Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("시도 횟수는 숫자로 입력해야 합니다.");
+        }
     }
 
 
