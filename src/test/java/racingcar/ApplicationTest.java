@@ -38,8 +38,6 @@ class ApplicationTest extends NsTest {
         Application.main(new String[]{});
     }
 
-    //입력 검증 관련(예외 중심)
-    //1. 자동차 이름관련
     @Nested
     @DisplayName("자동차 이름관련 예외 테스트")
     class 이름_입력_예외_테스트 {
@@ -76,7 +74,6 @@ class ApplicationTest extends NsTest {
     }
 
 
-    // 시도 횟수 관련 예외 테스트
     @Nested
     @DisplayName("시도 횟수 관련 예외 테스트")
     class 시도_횟수_입력_예외_테스트 {
@@ -106,7 +103,6 @@ class ApplicationTest extends NsTest {
 
     }
 
-    // 게임 로직 테스트
     @Nested
     @DisplayName("게임 로직 테스트")
     class 게임_로직_테스트 {
@@ -200,7 +196,6 @@ class ApplicationTest extends NsTest {
         @Test
         @DisplayName("최대 시도 횟수 경계값 테스트")
         void 최대_시도횟수_테스트() {
-            // 예를 들어 최대 허용 시도 횟수를 1000으로 가정
             assertSimpleTest(() -> run("pobi,woni", "1000"));
             assertThat(output()).contains("pobi", "woni");
         }
