@@ -52,7 +52,7 @@ public class Controller {
         view.showRaceStart();
 
         for (int turn = 0; turn < attemptCount; turn++) {
-            model.playTurn(); //Model이 자체적으로 상태 관리
+            model.playTurn();
             view.printRoundResult(model.getCurrentState()); //여기확인
         }
         showWinners();
