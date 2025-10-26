@@ -31,7 +31,6 @@ public class View {
     }
 
 
-    // View.java: 출력만
     public void showWinners(List<String> winners) {
         System.out.println("최종 우승자 : " + String.join(", ", winners));
     }

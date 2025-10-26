@@ -1,7 +1,5 @@
 package racingcar;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
 
 public class Controller {
@@ -35,7 +33,6 @@ public class Controller {
     }
 
 
-    // 검증 로직이 단일하여 현재는 Controller에 포함. 추후 검증 항목이 늘어나면 Validator로 분리 예정.
     private void validateAttemptCount(int attmept) {
         if (attmept < 1) {
             throw new IllegalArgumentException(INVALID_ATTEMPT_MSG);
