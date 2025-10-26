@@ -53,7 +53,7 @@ public class Controller {
 
         for (int turn = 0; turn < attemptCount; turn++) {
             model.playTurn();
-            view.printRoundResult(model.getCurrentState()); //여기확인
+            view.printRoundResult(model.getCurrentState());
         }
         showWinners();
     }
